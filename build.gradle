@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
+    }
+}
+
+plugins {
+    id "org.sonarqube" version "2.7"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "afclCore"
+        // Check that this one is the same as the one used in the buildBreaker.py
+	     property "sonar.projectKey", "abo:afclCore"	     
+	     // URL of the sonarQube host (comment out when working with SonarQube in localhost)
+		 property "sonar.host.url", "http://138.232.66.154:3000"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'jacoco'
+    jacoco {
+		toolVersion = "0.8.5"
+	}
+apply plugin: 'com.github.johnrengelman.shadow'
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'at.uibk.dps.afcl.Workflow'
+    }
+}
+
+group 'com.dps'
+version '1.0-SNAPSHOT'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+    testCompile group: 'org.meanbean', name: 'meanbean', version: '2.0.3'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version:'2.9.8'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.9.8'
+    compile group: 'org.yaml', name: 'snakeyaml', version:'1.23'
+    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-jsonSchema', version:'2.9.8'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version:'2.9.8'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version:'2.9.8'
+    compile group: 'com.github.fge', name: 'json-schema-validator', version:'2.2.6'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
+shadowJar {
+    baseName = 'afclCore'
+    classifier = null
+    version = null
+}

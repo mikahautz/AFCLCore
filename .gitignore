@@ -1,0 +1,12 @@
+.idea
+.idea
+out
+target
+afclCore/.gradle/
+build/
+.gradle/
+.classpath
+/bin/
+.settings
+.project
+AFCLCore.iml
