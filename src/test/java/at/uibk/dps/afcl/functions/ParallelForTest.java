@@ -26,7 +26,7 @@ public class ParallelForTest {
     public void testFullConstruction() {
 
         LoopCounter loopCounter = new LoopCounter("name", "type", "0", "10");
-        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", null, null);
+        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", "atomicFunctionDeployment", null, null);
         DataIns dataIns = new DataIns("inName", "inType");
         DataOuts dataOuts = new DataOuts("outName", "outType", "outSource");
 

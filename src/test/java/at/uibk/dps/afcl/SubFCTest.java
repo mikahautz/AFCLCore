@@ -25,7 +25,7 @@ public class SubFCTest {
      */
     @Test
     public void testFullConstruction() {
-        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", null, null);
+        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", "atomicFunctionDeployment", null, null);
         DataIns dataIns = new DataIns("inName", "inType");
         DataOuts dataOuts = new DataOuts("outName", "outType", "outSource");
 

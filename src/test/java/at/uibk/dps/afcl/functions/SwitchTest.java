@@ -25,7 +25,7 @@ public class SwitchTest {
     @Test
     public void testFullConstruction() {
 
-        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", null, null);
+        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", "atomicFunctionDeployment", null, null);
         DataIns dataIns = new DataIns("inName", "inType");
         DataOuts dataOuts = new DataOuts("outName", "outType", "outSource");
         Case caseCondition = new Case();
@@ -102,7 +102,6 @@ public class SwitchTest {
         Switch switchCondition2 = new Switch("name", null, null, null, null);
         Assert.assertEquals(switchCondition, switchCondition2);
         Assert.assertEquals(switchCondition.hashCode(), switchCondition2.hashCode());
-        ;
 
         switchCondition2.setAdditionalProperty("name", "type");
         Assert.assertNotEquals(switchCondition, switchCondition2);

@@ -12,7 +12,10 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Test the functionality of the utility class.
@@ -22,8 +25,7 @@ import java.util.*;
 public class UtilsTest {
 
     /**
-     * Creates an example of a simple workflow consisting of an
-     * atomicFunction and a parallelFor loop.
+     * Creates an example of a simple workflow consisting of an atomicFunction and a parallelFor loop.
      *
      * @return simple workflow
      */
@@ -31,7 +33,7 @@ public class UtilsTest {
 
         List<Function> workflowBody = new ArrayList<>();
 
-        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", null, null);
+        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", "atomicFunctionDeployment", null, null);
         workflowBody.add(atomicFunction);
 
         ParallelFor parallelFor = new ParallelFor("parallelFor", null,
@@ -44,8 +46,7 @@ public class UtilsTest {
     }
 
     /**
-     * Creates an example of a simple workflow which is not
-     * valid according to the schema.
+     * Creates an example of a simple workflow which is not valid according to the schema.
      *
      * @return simple invalid workflow
      */
@@ -183,10 +184,10 @@ public class UtilsTest {
     @Test
     public void readJsonString() {
         String jsonString = "{\r\n  \"name\": \"workflow\",\r\n  \"workflowBody\": [\r\n    {\r\n      \"function\": {\r\n        \"name\": \"atomicFunction\",\r\n        " +
-                "\"type\": \"atomicFunctionType\"\r\n      }\r\n    },\r\n    {\r\n      \"parallelFor\": {\r\n        \"name\": \"parallelFor\",\r\n        " +
+                "\"type\": \"atomicFunctionType\",\r\n        \"deployment\": \"atomicFunctionDeployment\"\r\n      }\r\n    },\r\n    {\r\n      \"parallelFor\": {\r\n        \"name\": \"parallelFor\",\r\n        " +
                 "\"loopCounter\": {\r\n          \"name\": \"loopCounter\",\r\n          \"type\": \"loopCounterType\",\r\n          \"from\": \"0\",\r\n          " +
                 "\"to\": \"10\"\r\n        },\r\n        \"loopBody\": [\r\n          {\r\n            \"function\": {\r\n              " +
-                "\"name\": \"atomicFunction\",\r\n              \"type\": \"atomicFunctionType\"\r\n            }\r\n          }\r\n        " +
+                "\"name\": \"atomicFunction\",\r\n              \"type\": \"atomicFunctionType\",\r\n        \"deployment\": \"atomicFunctionDeployment\"\r\n            }\r\n          }\r\n        " +
                 "]\r\n      }\r\n    }\r\n  ]\r\n}";
         File schema = new File(Objects.requireNonNull(getClass().getClassLoader().getResource("schema.json")).getFile());
 

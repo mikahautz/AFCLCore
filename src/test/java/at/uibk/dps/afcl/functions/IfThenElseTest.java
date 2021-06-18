@@ -29,7 +29,7 @@ public class IfThenElseTest {
         final Condition condition = new Condition("AND", new ArrayList<>(Arrays.asList(
                 new ACondition("1", "2", "=="),
                 new ACondition("1", "1", "=="))));
-        final AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", null, null);
+        final AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", "atomicFunctionDeployment", null, null);
         DataIns dataIns = new DataIns("inName", "inType");
         DataOuts dataOuts = new DataOuts("outName", "outType", "outSource");
 

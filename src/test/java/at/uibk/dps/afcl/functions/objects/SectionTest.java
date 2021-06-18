@@ -22,7 +22,7 @@ public class SectionTest {
      */
     @Test
     public void testFullConstruction() {
-        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", null, null);
+        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", "atomicFunctionDeployment", null, null);
 
         Section section = new Section(new ArrayList<>(Collections.singleton(atomicFunction)));
 
@@ -61,7 +61,7 @@ public class SectionTest {
      */
     @Test
     public void testHashEquals() {
-        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", null, null);
+        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", "atomicFunctionDeployment", null, null);
 
         Section section = new Section(new ArrayList<>(Collections.singleton(atomicFunction)));
 

@@ -220,6 +220,9 @@
             "type": {
               "type": "string"
             },
+            "deployment": {
+              "type": "string"
+            },
             "dataIns": {
               "$ref": "#/definitions/dataInsDef"
             },

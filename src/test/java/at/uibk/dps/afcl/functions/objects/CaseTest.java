@@ -22,7 +22,7 @@ public class CaseTest {
      */
     @Test
     public void testFullConstruction() {
-        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", null, null);
+        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", "atomicFunctionDeployment", null, null);
 
         Case aCase = new Case("1", new ArrayList<>(Collections.singleton(atomicFunction)));
 
@@ -66,7 +66,7 @@ public class CaseTest {
      */
     @Test
     public void testHashEquals() {
-        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", null, null);
+        AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType", "atomicFunctionDeployment", null, null);
 
         Case aCase = new Case("1", new ArrayList<>(Collections.singleton(atomicFunction)));
 

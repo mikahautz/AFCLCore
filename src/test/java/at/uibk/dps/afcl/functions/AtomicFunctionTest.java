@@ -5,11 +5,10 @@ import at.uibk.dps.afcl.functions.objects.DataIns;
 import at.uibk.dps.afcl.functions.objects.DataOutsAtomic;
 import org.junit.Assert;
 import org.junit.Test;
+import org.meanbean.test.BeanTester;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import org.meanbean.test.BeanTester;
 
 /**
  * Test the functionality of an atomic function object.
@@ -28,6 +27,7 @@ public class AtomicFunctionTest {
         DataIns dataIns = new DataIns("inName", "inType");
         final DataOutsAtomic dataOutsAtomic = new DataOutsAtomic("outName", "outType");
         AtomicFunction atomicFunction = new AtomicFunction("atomicFunction", "atomicFunctionType",
+                "atomicFunctionDeployment",
                 new ArrayList<>(Collections.singleton(dataIns)),
                 new ArrayList<>(Collections.singleton(dataOutsAtomic)));
 
@@ -98,7 +98,7 @@ public class AtomicFunctionTest {
      */
     @Test
     public void testHashEquals() {
-        AtomicFunction atomicFunction1 = new AtomicFunction("name", "type", null, null);
+        AtomicFunction atomicFunction1 = new AtomicFunction("name", "type", "deployment", null, null);
         Assert.assertEquals(atomicFunction1, atomicFunction1);
         Assert.assertEquals(atomicFunction1.hashCode(), atomicFunction1.hashCode());
         Assert.assertNotEquals(atomicFunction1, null);
@@ -106,26 +106,25 @@ public class AtomicFunctionTest {
         Function function = new Function();
         Assert.assertNotEquals(atomicFunction1, function);
 
-        AtomicFunction atomicFunction2 = new AtomicFunction("name", "type", null, null);
+        AtomicFunction atomicFunction2 = new AtomicFunction("name", "type", "deployment", null, null);
         Assert.assertEquals(atomicFunction1, atomicFunction2);
         Assert.assertEquals(atomicFunction1.hashCode(), atomicFunction2.hashCode());
-        ;
 
         atomicFunction2.setAdditionalProperty("name", "type");
         Assert.assertNotEquals(atomicFunction1, atomicFunction2);
 
         AtomicFunction atomicFunction3;
-        atomicFunction3 = new AtomicFunction("nameWrong", "type", null, null);
+        atomicFunction3 = new AtomicFunction("nameWrong", "type", "deployment", null, null);
         Assert.assertNotEquals(atomicFunction1, atomicFunction3);
 
-        atomicFunction3 = new AtomicFunction("name", "typeWrong", null, null);
+        atomicFunction3 = new AtomicFunction("name", "typeWrong", "deployment", null, null);
         Assert.assertNotEquals(atomicFunction1, atomicFunction3);
 
-        atomicFunction3 = new AtomicFunction("name", "type",
+        atomicFunction3 = new AtomicFunction("name", "type", "deployment",
                 Collections.singletonList(new DataIns("name", "type", "source")), null);
         Assert.assertNotEquals(atomicFunction1, atomicFunction3);
 
-        atomicFunction3 = new AtomicFunction("name", "type", null,
+        atomicFunction3 = new AtomicFunction("name", "type", "deployment", null,
                 Collections.singletonList(new DataOutsAtomic("name", "type")));
         Assert.assertNotEquals(atomicFunction1, atomicFunction3);
     }
