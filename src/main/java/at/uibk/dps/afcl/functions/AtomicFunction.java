@@ -20,6 +20,7 @@ import java.util.Objects;
 @JsonPropertyOrder({
         "name",
         "type",
+        "deployment",
         "dataIns",
         "dataOuts"
 })
@@ -28,11 +29,17 @@ import java.util.Objects;
 public class AtomicFunction extends Function {
 
     /**
-     * Function type of the Atomic Function. Represents an abstract description of
-     * a group of function implementations.
+     * Function type of the Atomic Function. Represents an abstract description of a group of function implementations.
      */
     @JsonProperty("type")
     private String type;
+
+    /**
+     * Function deployment of the Atomic Function. Represents the name of the deployed function, the provider, the
+     * region and memory specification.
+     */
+    @JsonProperty("deployment")
+    private String deployment;
 
     /**
      * Data input ports of the atomic function ({@link DataIns})
@@ -55,14 +62,16 @@ public class AtomicFunction extends Function {
     /**
      * Constructor for atomic function
      *
-     * @param name     Unique identifier of the compound
-     * @param type     Function type of the Atomic Function
-     * @param dataIns  Data input ports ({@link DataIns})
-     * @param dataOuts Data output ports ({@link DataOuts})
+     * @param name       Unique identifier of the compound
+     * @param type       Function type of the Atomic Function
+     * @param deployment Function deployment of the Atomic Function
+     * @param dataIns    Data input ports ({@link DataIns})
+     * @param dataOuts   Data output ports ({@link DataOuts})
      */
-    public AtomicFunction(String name, String type, List<DataIns> dataIns, List<DataOutsAtomic> dataOuts) {
+    public AtomicFunction(String name, String type, String deployment, List<DataIns> dataIns, List<DataOutsAtomic> dataOuts) {
         this.name = name;
         this.type = type;
+        this.deployment = deployment;
         this.dataIns = dataIns;
         this.dataOuts = dataOuts;
     }
@@ -79,6 +88,16 @@ public class AtomicFunction extends Function {
     @JsonProperty("type")
     public void setType(String type) {
         this.type = type;
+    }
+
+    @JsonProperty("deployment")
+    public String getDeployment() {
+        return deployment;
+    }
+
+    @JsonProperty("deployment")
+    public void setDeployment(String deployment) {
+        this.deployment = deployment;
     }
 
     @JsonProperty("dataIns")
@@ -103,12 +122,12 @@ public class AtomicFunction extends Function {
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
-        return this.additionalPropertiesAtomicFunction;
+        return additionalPropertiesAtomicFunction;
     }
 
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
-        this.additionalPropertiesAtomicFunction.put(name, value);
+        additionalPropertiesAtomicFunction.put(name, value);
     }
 
     @Override
@@ -122,6 +141,7 @@ public class AtomicFunction extends Function {
         AtomicFunction that = (AtomicFunction) o;
         return super.equals(o) &&
                 Objects.equals(type, that.type) &&
+                Objects.equals(deployment, that.deployment) &&
                 Objects.equals(dataIns, that.dataIns) &&
                 Objects.equals(dataOuts, that.dataOuts) &&
                 Objects.equals(additionalPropertiesAtomicFunction, that.additionalPropertiesAtomicFunction);
@@ -129,6 +149,6 @@ public class AtomicFunction extends Function {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), type, dataIns, dataOuts, additionalPropertiesAtomicFunction);
+        return Objects.hash(super.hashCode(), type, deployment, dataIns, dataOuts, additionalPropertiesAtomicFunction);
     }
 }
