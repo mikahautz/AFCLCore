@@ -4,6 +4,7 @@ package at.uibk.dps.afcl.functions.objects;
 import com.fasterxml.jackson.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -15,7 +16,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "name",
-        "value"
+        "value",
+        "services"
 })
 public class PropertyConstraint {
 
@@ -26,11 +28,17 @@ public class PropertyConstraint {
     private String name;
 
     /**
-     * Value of the property or constraint regarding
-     * its {@link PropertyConstraint#name}
+     * Value of the property or constraint regarding its {@link PropertyConstraint#name}
      */
     @JsonProperty("value")
     private String value;
+
+    /**
+     * List of services that are specified for function properties.
+     */
+    @JsonProperty("services")
+    private List<Service> services;
+
     @JsonIgnore
     private Map<String, Object> additionalPropertiesPropertiesConstraint = new HashMap<>();
 
@@ -73,6 +81,14 @@ public class PropertyConstraint {
         this.value = value;
     }
 
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalPropertiesPropertiesConstraint;
@@ -94,11 +110,12 @@ public class PropertyConstraint {
         PropertyConstraint that = (PropertyConstraint) o;
         return Objects.equals(name, that.name) &&
                 Objects.equals(value, that.value) &&
-                Objects.equals(additionalPropertiesPropertiesConstraint, that.additionalPropertiesPropertiesConstraint);
+                Objects.equals(additionalPropertiesPropertiesConstraint, that.additionalPropertiesPropertiesConstraint) &&
+                Objects.equals(services, that.services);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, value, additionalPropertiesPropertiesConstraint);
+        return Objects.hash(name, value, additionalPropertiesPropertiesConstraint, services);
     }
 }
